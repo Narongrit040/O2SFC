@@ -1,12 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>O2SFC</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+
+    <link rel="stylesheet" href="css/onsen-css-components.css">
+    <link rel="stylesheet" href="css/onsen-css-components.min.css">
 </head>
+
 <body>
-    HelloWorld
+    <div id="checkLogingSec1">
+        <button onclick="myAdmin()">Admin</button>
+        <button onclick="myQueue() ">Queue</button>
+        <button onclick="myTable()">Table</button>
+
+        <input type="email" id="email" value="adminrestvx@gmail.com">
+        <input type="password" id="password" value="123456789">
+
+
+        <button onclick="logIn()">login</button>
+    </div>
+
+
+    <div id="checkLogingSec2"></div>
+
+    <button onclick="logOut()">logout</button>
+    </div>
+
 </body>
+
+
+<script src="js/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-functions.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAQ4b9LNA2uW6SphMC0qn8qQge9ygn7gVk",
+        authDomain: "reststepvx.firebaseapp.com",
+        databaseURL: "https://reststepvx.firebaseio.com",
+        projectId: "reststepvx",
+        storageBucket: "reststepvx.appspot.com",
+        messagingSenderId: "562656255607"
+    };
+
+
+
+    firebase.initializeApp(config);
+    var uid;
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            // User is signed in.
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var isAnonymous = user.isAnonymous;
+            var uid = user.uid;
+            var providerData = user.providerData;
+            //  window.location.href = "page2.html";
+            $("#checkLogingSec1").hide();
+            $("#checkLogingSec2").show();
+            alert(uid);
+            // ...
+        } else {
+            $("#checkLogingSec1").show();
+            $("#checkLogingSec2").hide();
+            // User is signed out.
+            uid = null;
+            console.log("no");
+            console.log(uid);
+            //window.location.href = "index.html";
+            // ...
+        }
+    });
+
+    // if(uid != null){
+
+    // }
+    function myAdmin() {
+        document.getElementById("email").value = "adminrestvx@gmail.com";
+
+    }
+    function myQueue() {
+        document.getElementById("email").value = "userqueue@gmail.com";
+
+    }
+    function myTable() {
+        document.getElementById("email").value = "usertable1@gmail.com";
+
+    }
+</script>
+
+
+
 </html>
