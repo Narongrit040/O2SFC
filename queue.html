@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
+    <link rel="stylesheet" href="css/onsen-css-components.css">
+    <link rel="stylesheet" href="css/onsen-css-components.min.css">
+    <script src="js/Queue.js"></script>
+</head>
+
+<body>
+
+    <ons-page>
+        <ons-toolbar>
+            <div class="center">THE RESERVATION QUEUE</div>
+        </ons-toolbar>
+
+        <ons-tabbar swipeable position="auto">
+            <ons-tab page="booking.html" label="" active>
+            </ons-tab>
+            <!-- <ons-tab page="tab2.html" label="Tab 2" icon="md-settings" active-icon="md-face">
+                  </ons-tab> -->
+        </ons-tabbar>
+    </ons-page>
+
+    <template id="booking.html">
+        <ons-page id="booking">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-sm-8">
+
+                        <script>
+                            //slind img
+                            var myIndex = 0;
+                            carousel();
+
+                            function carousel() {
+                                var i;
+                                var x = document.getElementsByClassName("mySlides");
+                                for (i = 0; i < x.length; i++) {
+                                    x[i].style.display = "none";
+                                }
+                                myIndex++;
+                                if (myIndex > x.length) { myIndex = 1 }
+                                x[myIndex - 1].style.display = "block";
+                                setTimeout(carousel, 2000); // Change image every 2 seconds
+                            }
+                            
+                        </script>
+                        <br>
+                        <div> <img class="mySlides" src="img/testAds1.png" style="width: 100%; height: 100%; object-fit: contain;">
+                            <img class="mySlides" src="img/testAds2.png" style="width: 100%; height: 100%; object-fit: contain;">
+                            <img class="mySlides" src="img/testAds3.png" style="width: 100%; height: 100%; object-fit: contain;">
+                            <!-- <img src="https://www.thaihoteldeal.com/images/images-data/promotion/images/20170315163021_expo_3135.jpg"
+                                alt="one" style="width: 100%; height: 100%; object-fit: contain;">  -->
+                        </div>
+                    </div>
+
+                    <!-- size img 800*500 -->
+                    <div class="col-sm-4">
+                        <center>
+                            <h1 class="pagelink">จองคิว</h1>
+                        </center>
+                        <center>
+                            <br><img src="img/onePx.png" onmouseover="this.src='img/onePxA.png'" onmouseout="this.src='img/onePx.png'"
+                                height="130" size="130" alt="one" onclick="myMember1()">
+                            <img src="img/twoPx.png" onmouseover="this.src='img/twoPxA.png'" onmouseout="this.src='img/twoPx.png'"
+                                height="130" size="130" alt="one" onclick="myMember2()">
+                            <img src="img/threePx.png" onmouseover="this.src='img/threePxA.png'" onmouseout="this.src='img/threePx.png'"
+                                height="130" size="130" alt="one" onclick="myMember3()"><br><br>
+                            <img src="img/fourPx.png" onmouseover="this.src='img/fourPxA.png'" onmouseout="this.src='img/fourPx.png'"
+                                height="130" size="130" alt="one" onclick="myMember4()">
+                            <img src="img/fivePx.png" onmouseover="this.src='img/fivePxA.png'" onmouseout="this.src='img/fivePx.png'"
+                                height="130" size="130" alt="one" onclick="myMember5()">
+                            <img src="img/sixPx.png" onmouseover="this.src='img/sixPxA.png'" onmouseout="this.src='img/sixPx.png'"
+                                height="130" size="130" alt="one" onclick="myMember6()">
+                            <input type="hidden" id="myQueue" value="0"><br>
+
+                            <div><br><br>
+                                <p id="showQueue"></p>
+                            </div>
+                        </center>
+                    </div>
+
+
+                </div>
+                  </div>
+
+
+
+
+
+
+
+
+        </ons-page>
+    </template>
+
+
+
+
+    <script src="js/disableRightClick.js"></script>
+    <!-- -------------------------------------------------------------- -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-functions.js"></script>
+    <!-- -------------------------------------------------------------- -->
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAQ4b9LNA2uW6SphMC0qn8qQge9ygn7gVk",
+            authDomain: "reststepvx.firebaseapp.com",
+            databaseURL: "https://reststepvx.firebaseio.com",
+            projectId: "reststepvx",
+            storageBucket: "reststepvx.appspot.com",
+            messagingSenderId: "562656255607"
+        };
+
+
+
+        firebase.initializeApp(config);
+        var uid;
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var isAnonymous = user.isAnonymous;
+                var uid = user.uid;
+                var providerData = user.providerData;
+                //  window.location.href = "page2.html";
+
+                //alert(uid);
+                // ...
+            } else {
+                // User is signed out.
+                uid = null;
+                console.log("no");
+                console.log(uid);
+                window.location.href = "index.html";
+                // ...
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>

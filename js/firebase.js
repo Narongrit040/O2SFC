@@ -1,5 +1,6 @@
 var uid, checkLog;
 $("#checkLog").hide();
+
 function checkLogOut() {
 
     var x = document.getElementById("checkPassStaff").value;
