@@ -19,7 +19,7 @@ $('#inputPassword, #confirm_password').on('keyup', function () {
         $('#messageDigi').html('Pass').css('color', 'green');
         verificationPassDigi = "true";
     } else {
-        $('#messageDigi').html('you have to enter at least 6 digit!').css('color', 'red');
+        $('#messageDigi').html('you have to enter password at least 6 characters!').css('color', 'red');
         verificationPassDigi = "fasle";
     }
 
@@ -39,9 +39,9 @@ function registerStaff() {
         var errorCode = error.code;
         var errorMessage = error.message;
         if (errorCode == 'auth/weak-password') {
-            alert('The password is too weak.');
+            ons.notification.alert('The password is too weak.');
         } else {
-            alert(errorMessage);
+            ons.notification.alert(errorMessage);
         }
         console.log(error);
 
@@ -75,9 +75,9 @@ function logOut() {
     firebase.auth().signOut().then(function () {
         // Sign-out successful.
         // alert('Sign-out successful');
-        alert('เพิ่มสมาชิกสำเร็จ');
+        ons.notification.alert('เพิ่มสมาชิกสำเร็จ');
     }).catch(function (error) {
         // An error happened.
-        alert('error');
+        ons.notification.alert('error');
     });
 }
