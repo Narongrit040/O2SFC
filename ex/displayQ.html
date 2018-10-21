@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
+    <link rel="stylesheet" href="css/onsen-css-components.css">
+    <link rel="stylesheet" href="css/onsen-css-components.min.css">
+
+    <script src="js/index.js"></script>
+    <script src="js/callQueue.js"></script>
+
+</head>
+
+<body>
+
+    <ons-page>
+        <ons-toolbar>
+            <div class="center">THE RESERVATION QUEUE</div>
+        </ons-toolbar>
+
+        <ons-tabbar swipeable position="auto">
+            <ons-tab page="tab1.html" label="" active>
+            </ons-tab>
+            <!-- <ons-tab page="tab2.html" label="Tab 2" icon="md-settings" active-icon="md-face">
+                  </ons-tab> -->
+        </ons-tabbar>
+    </ons-page>
+
+    <template id="tab1.html">
+        <ons-page id="Tab1"><br>
+            <div class="container-fluid" style="margin-left:25px;margin-right:25px">
+
+                <div class="row">
+                    <div class="col-sm-8" style="background-color:  white; border-style: solid;border-color:#eaebed; border-radius: 15px;  ">
+
+                        <script>
+                            //slind img
+                            var myIndex = 0;
+                            carousel();
+
+                            function carousel() {
+                                var i;
+                                var x = document.getElementsByClassName("mySlides");
+                                for (i = 0; i < x.length; i++) {
+                                    x[i].style.display = "none";
+                                }
+                                myIndex++;
+                                if (myIndex > x.length) { myIndex = 1 }
+                                x[myIndex - 1].style.display = "block";
+                                setTimeout(carousel, 2000); // Change image every 2 seconds
+                            }
+
+                        </script>
+                        <br>
+                        <div> <img class="mySlides" src="img/testAds1.png" style="width: 100%; height: 100%; object-fit: contain;">
+                            <img class="mySlides" src="img/testAds2.png" style="width: 100%; height: 100%; object-fit: contain;">
+                            <img class="mySlides" src="img/testAds3.png" style="width: 100%; height: 100%; object-fit: contain;"><br>
+                            <!-- <img src="https://www.thaihoteldeal.com/images/images-data/promotion/images/20170315163021_expo_3135.jpg"
+                                                alt="one" style="width: 100%; height: 100%; object-fit: contain;">  -->
+                        </div>
+                    </div>
+                    <!-- size img 800*500 -->
+                    
+                    <div class="col-md-3" style="background-color:  white; border-style: solid;border-color:#eaebed; border-radius: 10px;margin-left:85px;margin-right:15px">
+                       
+                        <center>
+
+                            <p ></p> <br>
+                            <h1>First Queue</h1>
+                        
+                               <h1 style="font-size: 80px; color:red"> <p id="firstQueue"></p></h1>
+                                <p id="cfIdTable"></p>
+                              
+                                <h2>
+                                        <br> <br> <br> <br> <br> <br>
+                            </h2>
+                            <hr>
+                            <h1>All Queue</h1>
+                          
+                            <h1 style="font-size: 30px; "><p id="showAllQueue"></p></h1>
+          
+                            <!-- <ons-button onclick="skipQueue()">Skip</ons-button>
+                                
+                                                    <ons-button onclick="removeQueue()">Delete</ons-button> -->
+                            <!-- <ons-button onclick="selectTable()">selectTable</ons-button> -->
+                        </center>
+
+              
+                    </div>
+                
+         
+
+                </div>
+            </div>
+
+
+            <!-- <p style="text-align: center;">
+                <center>
+
+                    <p id="demo"></p>
+                    <h1>First Queue</h1>
+                    <h2>
+                        <p id="firstQueue"></p>
+                    </h2>
+                    <h1>All Queue</h1>
+                    <p id="showAllQueue"></p>
+
+                   <ons-button onclick="skipQueue()">Skip</ons-button>
+
+                    <ons-button onclick="removeQueue()">Delete</ons-button> -->
+                    <!-- <ons-button onclick="selectTable()">selectTable</ons-button> -->
+                <!-- </center>
+            </p> -->
+
+        </ons-page>
+    </template>
+
+    <!-- <template id="tab2.html">
+                <ons-page id="Tab2">
+                  <p style="text-align: center;">
+                    This is the second page.
+                  </p>
+                </ons-page>
+              </template> -->
+
+
+
+    <script src="js/disableRightClick.js"></script>
+    <!-- -------------------------------------------------------------- -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-functions.js"></script>
+    <!-- -------------------------------------------------------------- -->
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAQ4b9LNA2uW6SphMC0qn8qQge9ygn7gVk",
+            authDomain: "reststepvx.firebaseapp.com",
+            databaseURL: "https://reststepvx.firebaseio.com",
+            projectId: "reststepvx",
+            storageBucket: "reststepvx.appspot.com",
+            messagingSenderId: "562656255607"
+        };
+
+
+
+        firebase.initializeApp(config);
+        var uid;
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var isAnonymous = user.isAnonymous;
+                var uid = user.uid;
+                var providerData = user.providerData;
+                //  window.location.href = "page2.html";
+                console.log(uid);
+                //alert(uid);
+                // ...
+            } else {
+                // User is signed out.
+                uid = null;
+                console.log("no");
+                console.log(uid);
+               // window.location.href = "index.html";
+                // ...
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>

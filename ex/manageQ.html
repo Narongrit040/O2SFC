@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
+    <link rel="stylesheet" href="css/onsen-css-components.css">
+    <link rel="stylesheet" href="css/onsen-css-components.min.css">
+
+    <script src="js/index.js"></script>
+    <script src="js/callQueue.js"></script>
+    
+</head>
+
+<body>
+
+        <ons-page>
+                <ons-toolbar>
+                  <div class="center">Tab 1</div>
+                </ons-toolbar>
+              
+                <ons-tabbar swipeable position="auto">
+                  <ons-tab page="tab1.html" label=""active>
+                  </ons-tab>
+                  <!-- <ons-tab page="tab2.html" label="Tab 2" icon="md-settings" active-icon="md-face">
+                  </ons-tab> -->
+                </ons-tabbar>
+              </ons-page>
+              
+              <template id="tab1.html">
+                <ons-page id="Tab1">
+                  <p style="text-align: center;"><center>
+
+                    <p id="demo"></p>
+                    <h1>First Queue</h1>
+                    <h2>
+                        <p id="firstQueue"></p>
+                    </h2>
+                    <h1>All Queue</h1>
+                    <p id="showAllQueue"></p>
+                    
+                    <ons-button onclick="skipQueue()">Skip</ons-button>
+
+                    <ons-button onclick="removeQueue()">Delete</ons-button>
+                    <!-- <ons-button onclick="selectTable()">selectTable</ons-button> -->
+                </center></p>
+                
+                </ons-page>
+              </template>
+              
+              <!-- <template id="tab2.html">
+                <ons-page id="Tab2">
+                  <p style="text-align: center;">
+                    This is the second page.
+                  </p>
+                </ons-page>
+              </template> -->
+
+
+
+    <script src="js/disableRightClick.js"></script>
+    <!-- -------------------------------------------------------------- -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-functions.js"></script>
+    <!-- -------------------------------------------------------------- -->
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAQ4b9LNA2uW6SphMC0qn8qQge9ygn7gVk",
+            authDomain: "reststepvx.firebaseapp.com",
+            databaseURL: "https://reststepvx.firebaseio.com",
+            projectId: "reststepvx",
+            storageBucket: "reststepvx.appspot.com",
+            messagingSenderId: "562656255607"
+        };
+
+
+
+        firebase.initializeApp(config);
+        var uid;
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var isAnonymous = user.isAnonymous;
+                var uid = user.uid;
+                var providerData = user.providerData;
+                //  window.location.href = "page2.html";
+
+                alert(uid);
+                // ...
+            } else {
+                // User is signed out.
+                uid = null;
+                console.log("no");
+                console.log(uid);
+                window.location.href = "index.html";
+                // ...
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>

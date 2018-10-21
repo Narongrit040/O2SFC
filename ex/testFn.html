@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Document</title>
+    <script src="js/callQueue.js"></script>
+</head>
+
+<body>
+    <button onclick="callQueue()">callQueue</button>
+    <button onclick="myFunction()">Try it</button>
+    <button onclick="removeQueue()">Delete</button>
+    <button onclick="selectTable()">selectTable</button>
+    <p id="demo"></p>
+    <h1>First Queue</h1>
+    <h2>
+        <p id="firstQueue"></p>
+    </h2>
+    <h1>All Queue</h1>
+    <p id="showAllQueue"></p>
+    
+
+    <script>
+        var fruits = ["03-Oct-18 2:48:10 AM", "03-Jan-18 2:48:10 AM", "03-Jan-18 2:48:12 AM", "03-Jan-18 2:48:11 AM"];
+        document.getElementById("demo").innerHTML = fruits;
+
+        function myFunction() {
+            fruits.sort();
+            document.getElementById("demo").innerHTML = fruits;
+        }
+
+    </script>
+
+
+</body>
+
+</html>
