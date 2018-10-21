@@ -45,16 +45,27 @@
 
 
                 </script>
-                <form action="regist"> <label>Email : <input type="email" id="inputEmail" placeholder="example@email.com"
-                            required> </label><br>
-                    <label>password :
+                <form action="regist">
+                    <label>Firstname:
+                        <input type="text" id="inputFName" placeholder="Firstname" />
+                    </label><br>
+                    <label>Lastname:
+                        <input type="text" id="inputLName" placeholder="Lastname" />
+                    </label><br>
+                    <label>Email : <input type="email" id="inputEmail" placeholder="example@email.com" required>
+                    </label><br>
+                    <label>Password :
                         <input name="password" id="inputPassword" type="password" placeholder="Password" />
                         <span id='messageDigi'>Enter password at least 6 digi</span>
                     </label>
                     <br>
-                    <label>confirm password:
+                    <label>Confirm password:
                         <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" />
                         <span id='message'></span>
+                    </label><br>
+
+                    <label>Position:
+                        <input type="text" id="inputLPosition" placeholder="Lastname" />
                     </label><br>
                     <ons-button type="Submit" id="checkInfor" onclick="registerStaff()">Submit</ons-button>
                 </form>

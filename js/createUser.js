@@ -1,10 +1,11 @@
 var verificationPass = "";
 var verificationPassDigi = "";
 document.getElementById("checkInfor").disabled = true;
-$('#inputPassword, #confirm_password').on('keyup', function () {
+$('#inputPassword, #confirm_password,#inputFName,#inputLName,#inputLPosition,#inputEmail').on('keyup', function () {
     if ($('#inputPassword').val() == $('#confirm_password').val()) {
         $('#message').html('Matching').css('color', 'green');
         verificationPass = "true";
+
     } else {
         $('#message').html('Not Matching').css('color', 'red');
         verificationPass = "fasle";
@@ -12,9 +13,13 @@ $('#inputPassword, #confirm_password').on('keyup', function () {
     if ($('#confirm_password').val().length < 1) {
         $('#message').html('*').css('color', 'red');
     }
-
-
-
+    //-----
+    if ($('#inputFName').val().length >= 1 && $('#inputLName').val().length >= 1 && $('#inputLPosition').val().length >= 1 && $('#inputEmail').val().length >= 1) {
+        verificationPass = "true";
+    } else {
+        verificationPass = "fasle";
+    }
+    //-----
     if ($('#inputPassword').val().length >= 6) {
         $('#messageDigi').html('Pass').css('color', 'green');
         verificationPassDigi = "true";
@@ -22,7 +27,7 @@ $('#inputPassword, #confirm_password').on('keyup', function () {
         $('#messageDigi').html('you have to enter password at least 6 characters!').css('color', 'red');
         verificationPassDigi = "fasle";
     }
-
+    //-----
     if (verificationPass === "true" && verificationPassDigi === "true") {
         document.getElementById("checkInfor").disabled = false;
     } else {
@@ -55,7 +60,7 @@ function registerStaff() {
             //  window.location.href = "page2.html";
             console.log("xxxxxxx");
             console.log(uid);
-            if(uid != null){
+            if (uid != null) {
                 logOut();
             }
             // ...
@@ -68,7 +73,7 @@ function registerStaff() {
             // ...
         }
     });
- 
+
 }
 
 function logOut() {
