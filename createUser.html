@@ -65,7 +65,11 @@
                     </label><br>
 
                     <label>Position:
-                        <input type="text" id="inputLPosition" placeholder="Lastname" />
+                        <input type="text" id="inputPosition" placeholder="Position" />
+                    </label><br>
+                    <label>Telphone:
+                        <input id="inputTel" name="telNo" type="tel" placeholder="0123456789" maxlength="10"required
+                        pattern="[0-9]{10}"/>
                     </label><br>
                     <ons-button type="Submit" id="checkInfor" onclick="registerStaff()">Submit</ons-button>
                 </form>

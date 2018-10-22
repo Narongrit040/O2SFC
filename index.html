@@ -36,34 +36,36 @@
 
     <template id="tab1.html">
         <ons-page id="Tab1">
-                <div id="checkLogingSec1" style="text-align: center;">
-                        <ons-button onclick="myAdmin()">Admin</ons-button>
-                        <ons-button onclick="myQueue() ">Queue</ons-button>
-                        <ons-button onclick="myTable()">Table</ons-button>
-                        <br> <br>
-    
-                        <p>
-                            <ons-input id="email" type="email" modifier="underbar" placeholder="Username" value="adminrestvx@gmail.com"
-                                float></ons-input>
-                        </p>
-                        <p>
-                            <ons-input id="password" modifier="underbar" type="password" placeholder="Password" value="123456789"
-                                float></ons-input>
-                        </p>
-                        <ons-button onclick="logIn()">LOGIN</ons-button>
-                    </div>
-                    <div id="inFormatonBlog" style="display: none;" >
-            <p style="text-align: center; color:white;"  >
-           <h1>information</h1>
-            </p>
-        </div>
+            <div id="checkLogingSec1" style="text-align: center;">
+                <ons-button onclick="myAdmin()">Admin</ons-button>
+                <ons-button onclick="myQueue() ">Queue</ons-button>
+                <ons-button onclick="myTable()">Table</ons-button>
+                <br> <br>
+
+                <p>
+                    <ons-input id="email" type="email" modifier="underbar" placeholder="Username" value="adminrestvx@gmail.com"
+                        float></ons-input>
+                </p>
+                <p>
+                    <ons-input id="password" modifier="underbar" type="password" placeholder="Password" value="123456789"
+                        float></ons-input>
+                </p>
+                <ons-button onclick="logIn()">LOGIN</ons-button>
+            </div>
+            <div id="inFormatonBlog" style="display: none;">
+                <p style="text-align: center; color:white;">
+                    <h1>information</h1>
+
+                </p>
+                <p id="showFname"></p>
+            </div>
         </ons-page>
     </template>
 
     <template id="tab2.html">
         <ons-page id="Tab2">
             <p style="text-align: center;">
-            
+
             </p>
         </ons-page>
     </template>
@@ -108,10 +110,13 @@
             var uid = user.uid;
             var providerData = user.providerData;
             //  window.location.href = "page2.html";
+
             $("#checkLogingSec1").hide();
             $("#checkLogingSec2").show();
             $("#inFormatonBlog").show();
             alert(uid);
+            checkIdUser(uid);
+
 
 
             // ...
@@ -143,6 +148,76 @@
         document.getElementById("email").value = "usertable1@gmail.com";
 
     }
+    //----------------------
+
+    function checkIdUser(uid) {
+        var mainId;
+        $.ajax({
+
+            //CP1. Complete Ajax Code to GET ALL pin data 
+            type: "GET",
+            url: "https://reststepvx20180923124000.azurewebsites.net/Api/Staffs",
+
+        }).then(function (data) {
+
+            // document.getElementById("firstQueue").innerHTML = data.Name;
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].Uid === uid) {
+                    mainId = data[i].Id;
+                }
+            }
+
+            console.log(mainId);
+            
+            checkPosition(mainId);
+            checkUid(mainId);
+
+        });
+    }
+    function checkUid(mainId) {
+
+        $.ajax({
+
+            //CP1. Complete Ajax Code to GET ALL pin data 
+            type: "GET",
+            url: "https://reststepvx20180923124000.azurewebsites.net/Api/Staffs/" + mainId,
+
+        }).then(function (data) {
+
+            document.getElementById("showFname").innerHTML = data.FirstName;
+
+        });
+    }
+
+    function checkPosition(mainId) {
+        $.ajax({
+
+            //CP1. Complete Ajax Code to GET ALL pin data 
+            type: "GET",
+            url: "https://reststepvx20180923124000.azurewebsites.net/Api/Staffs/" + mainId,
+
+        }).then(function (data) {
+
+            // document.getElementById("firstQueue").innerHTML = data.Name;
+            
+                if (data.Position === "Admin") {
+                    console.log("I'm Admin");
+                } else if(data.Position === "Queue"){
+                    console.log("I'm Queue");
+                } else if(data.Position === "Table"){
+                    console.log("I'm Table");
+                }else if(data.Position == "Chef"){
+                    console.log("I'm Chef");
+                }else {
+                    console.log("Don't have position");
+                }
+            
+
+
+        });
+
+    }
+
 </script>
 
 
