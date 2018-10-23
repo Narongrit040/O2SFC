@@ -15,10 +15,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
     <link rel="stylesheet" href="css/onsen-css-components.css">
     <link rel="stylesheet" href="css/onsen-css-components.min.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
+<style>
 
-<body>
-    <ons-page>
+
+        .page--full_bg__background {
+            background-image: url(img/bg.jpg);
+            /* // alt="https://www.pexels.com/photo/opened-coloring-book-932262/"   https://www.pexels.com/photo-license/*/
+    
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+    
+        }
+    </style>
+    
+<body >
+    <!-- <ons-page>
         <ons-toolbar>
             <div class="center">O2SFC</div>
             <div class="right" id="checkLogingSec2" style="display: none; color:white;">
@@ -27,15 +42,41 @@
         </ons-toolbar>
 
         <ons-tabbar swipeable position="auto">
-            <ons-tab page="tab1.html" label="Tab 1" icon="ion-home, material:md-home" badge="7" active>
-            </ons-tab>
-            <ons-tab page="tab2.html" label="Tab 2" icon="md-settings" active-icon="md-face">
-            </ons-tab>
+        
+           
+                <ons-tab page="tab1.html" label="Tab 1" icon="ion-home, material:md-home" badge="7" active>
+                </ons-tab>
+      
+                <ons-tab page="tab2.html" label="Tab 2" icon="md-settings" active-icon="md-face">
+                </ons-tab>
+
         </ons-tabbar>
     </ons-page>
 
     <template id="tab1.html">
         <ons-page id="Tab1">
+           
+        </ons-page>
+    </template>
+
+    <template id="tab2.html">
+        <ons-page id="Tab2">
+            <p style="text-align: center;">
+
+            </p>
+        </ons-page>
+    </template> -->
+
+    <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
+
+    <template id="page1.html">
+        <ons-page id="page1" modifier="full_bg" >
+            <ons-toolbar>
+                <div class="center">O2SFC</div>
+                <div class="right" id="checkLogingSec2" style="display: none; color:white;">
+                    <ons-toolbar-button style=" color:red;" onclick="logOut()">LOGOUT</ons-toolbar-button>
+                </div>
+            </ons-toolbar>
             <div id="checkLogingSec1" style="text-align: center;">
                 <ons-button onclick="myAdmin()">Admin</ons-button>
                 <ons-button onclick="myQueue() ">Queue</ons-button>
@@ -53,18 +94,66 @@
                 <ons-button onclick="logIn()">LOGIN</ons-button>
             </div>
             <div id="inFormatonBlog" style="display: none;">
-                <p style="text-align: center; color:white;">
+                <div style="text-align: center; color:white;">
                     <h1>information</h1>
 
-                </p>
-                <p id="showFname"></p>
+                    <p id="showFname"></p>
+                    <ons-button id="push-button">Push page</ons-button>
+                </div>
             </div>
+
+
+
         </ons-page>
     </template>
 
-    <template id="tab2.html">
-        <ons-page id="Tab2">
+    <template id="page2.html">
+        <ons-page id="page2">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>Page 1</ons-back-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+            <script src="js/createUser.js"></script>
+            <h1>เพิ่มพนักงาน</h1>
+
             <p style="text-align: center;">
+                <script>//confirm password
+
+
+
+
+                </script>
+                <form action="regist">
+                    <label>Firstname:
+                        <input type="text" id="inputFName" placeholder="Firstname" />
+                    </label><br>
+                    <label>Lastname:
+                        <input type="text" id="inputLName" placeholder="Lastname" />
+                    </label><br>
+                    <label>Email : <input type="email" id="inputEmail" placeholder="example@email.com" required>
+                    </label><br>
+                    <label>Password :
+                        <input name="password" id="inputPassword" type="password" placeholder="Password" />
+                        <span id='messageDigi'>Enter password at least 6 digi</span>
+                    </label>
+                    <br>
+                    <label>Confirm password:
+                        <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" />
+                        <span id='message'></span>
+                    </label><br>
+
+                    <label>Position:
+                        <input type="text" id="inputPosition" placeholder="Position" />
+                    </label><br>
+                    <label>Telphone:
+                        <input id="inputTel" name="telNo" type="tel" placeholder="0123456789" maxlength="10"required
+                        pattern="[0-9]{10}"/>
+                    </label><br>
+                    <ons-button type="Submit" id="checkInfor" onclick="registerStaff()">Submit</ons-button>
+                </form>
+
 
             </p>
         </ons-page>
@@ -73,7 +162,7 @@
 
 </body>
 
-
+<script src="js/index.js"></script>
 <script src="js/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 
@@ -110,7 +199,8 @@
             var uid = user.uid;
             var providerData = user.providerData;
             //  window.location.href = "page2.html";
-
+            var email = document.getElementById('email').value;
+  var password = document.getElementById('password').value;
             $("#checkLogingSec1").hide();
             $("#checkLogingSec2").show();
             $("#inFormatonBlog").show();
@@ -150,73 +240,6 @@
     }
     //----------------------
 
-    function checkIdUser(uid) {
-        var mainId;
-        $.ajax({
-
-            //CP1. Complete Ajax Code to GET ALL pin data 
-            type: "GET",
-            url: "https://reststepvx20180923124000.azurewebsites.net/Api/Staffs",
-
-        }).then(function (data) {
-
-            // document.getElementById("firstQueue").innerHTML = data.Name;
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].Uid === uid) {
-                    mainId = data[i].Id;
-                }
-            }
-
-            console.log(mainId);
-            
-            checkPosition(mainId);
-            checkUid(mainId);
-
-        });
-    }
-    function checkUid(mainId) {
-
-        $.ajax({
-
-            //CP1. Complete Ajax Code to GET ALL pin data 
-            type: "GET",
-            url: "https://reststepvx20180923124000.azurewebsites.net/Api/Staffs/" + mainId,
-
-        }).then(function (data) {
-
-            document.getElementById("showFname").innerHTML = data.FirstName;
-
-        });
-    }
-
-    function checkPosition(mainId) {
-        $.ajax({
-
-            //CP1. Complete Ajax Code to GET ALL pin data 
-            type: "GET",
-            url: "https://reststepvx20180923124000.azurewebsites.net/Api/Staffs/" + mainId,
-
-        }).then(function (data) {
-
-            // document.getElementById("firstQueue").innerHTML = data.Name;
-            
-                if (data.Position === "Admin") {
-                    console.log("I'm Admin");
-                } else if(data.Position === "Queue"){
-                    console.log("I'm Queue");
-                } else if(data.Position === "Table"){
-                    console.log("I'm Table");
-                }else if(data.Position == "Chef"){
-                    console.log("I'm Chef");
-                }else {
-                    console.log("Don't have position");
-                }
-            
-
-
-        });
-
-    }
 
 </script>
 
